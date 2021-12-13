@@ -1,0 +1,125 @@
+body {
+    font-size: 16px;
+    font-weight: 400;
+}
+
+article h1 {
+    font-size: 36px;
+    font-weight: 600;
+}
+
+article h2 {
+    font-size: 32px;
+    font-weight: 600
+}
+
+strong {
+    font-weight: 600;
+}
+
+.alert-danger {
+    color: #171717;
+    background-color: #e0f2ff;
+    border-color: #e0f2ff;
+}
+
+.sidetoc
+{
+    background-color: #ffffff;    
+}
+
+.sidenav, .fixed_header, .sidetoc
+{
+    background-color: #ffffff;
+}
+
+body .sidetoc
+{
+    background-color: #ffffff;
+}
+
+body .toc
+{
+    background-color: #ffffff;
+}
+
+.alert h5:before {
+    position:relative;
+    top:1px;
+    display:inline-block;
+    font-family:'Docons';
+    line-height:1;
+    -webkit-font-smoothing:antialiased;
+    -moz-osx-font-smoothing:grayscale;
+    margin-right: 5px;
+    font-weight: normal;
+}
+
+@font-face {
+    font-family: 'docons';
+    src: url("../fonts/docons.eot");
+    src: url("../fonts/docons.eot") format("embedded-opentype"), url("../fonts/docons.woff2") format("woff2"), url("../fonts/docons.woff") format("woff"), url("../fonts/docons.ttf") format("truetype");
+    font-weight: normal;
+    font-style: normal;
+}
+
+.alert-info h5:before {
+    content:"\e086"
+}
+
+.alert-warning h5:before {
+    content:"\e127"
+}
+
+.alert-danger h5:before {
+    content:"\FF09"
+}
+
+.alert h5
+{
+    text-transform: none;
+    font-weight: 600;
+    font-size: 16px;
+}
+
+.toc .level1 > li
+{
+    font-size: 14px;
+}
+
+.toc > li
+{
+    font-size: 14px;
+}
+
+.toc ul
+{
+    font-size: 14px;
+}
+
+.toc .nav > li.active > a
+{
+    color: #171717;
+    font-weight: 600;
+}
+
+.toc > li.active li.in > a
+{
+    font-weight: 400;
+}
+
+.content p
+{
+    margin-top: 16px;
+}
+
+.toc .nav > li > .expand-stub::before, .toc .nav > li.active > .expand-stub::before {
+    font-family:'Docons';
+    content: "\FF34";
+}
+
+.toc .nav > li.active > .expand-stub::before, .toc .nav > li.in > .expand-stub::before, .toc .nav > li.in.active > .expand-stub::before, .toc .nav > li.filtered > .expand-stub::before {
+    font-family:'Docons';
+    content: "\FF34";
+    transform: rotate(90deg);
+}
