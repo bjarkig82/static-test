@@ -1,0 +1,95 @@
+{
+    "routes": [
+        {
+            "route": "/docs-access/*",
+            "allowedRoles": [
+                "DocsAccess"
+            ]
+        },
+        {
+            "route": "/authenticated/*",
+            "allowedRoles": [
+                "authenticated"
+            ]
+        },
+        {
+            "route": "/admin/*",
+            "allowedRoles": [
+                "administrator"
+            ]
+        },
+        {
+            "route": "/login",
+            "rewrite": "/.auth/login/organizations"
+        },
+        {
+            "route": "/logout",
+            "redirect": "/.auth/logout"
+        }
+    ],
+    "responseOverrides": {
+        "401": {
+            "redirect": "/login",
+            "statusCode": 302
+        }
+    },
+    "auth": {
+        "identityProviders": {
+            "azureActiveDirectory": {
+                "registration": {
+                    "openIdIssuer": "https://login.microsoftonline.com/533ce569-0ef4-408c-8de2-299e7c039a5f/v2.0/",
+                    "clientIdSettingName": "DOCS_CLIENT_ID",
+                    "clientSecretSettingName": "DOCS_CLIENT_SECRET"
+                },
+                "login": {
+                    "loginParameters": []
+                }
+            },
+            "customOpenIdConnectProviders": {
+                "organizations": {
+                    "registration": {
+                        "clientIdSettingName": "DOCS_CLIENT_ID",
+                        "clientCredential": {
+                            "clientSecretSettingName": "DOCS_CLIENT_SECRET"
+                        },
+                        "openIdConnectConfiguration": {
+                            "wellKnownOpenIdConfiguration": "https://login.microsoftonline.com/organizations/v2.0/.well-known/openid-configuration"
+                        }
+                    },
+                    "login": {
+                        "nameClaimType": "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name",
+                        "scopes": [
+                            "openid",
+                            "profile"
+                        ]
+                    }
+                },
+                "b2c": {
+                    "registration": {
+                        "clientIdSettingName": "B2C_CLIENT_ID",
+                        "clientCredential": {
+                            "clientSecretSettingName": "B2C_CLIENT_SECRET"
+                        },
+                        "openIdConnectConfiguration": {
+                            "wellKnownOpenIdConfiguration": "https://annatadocs.b2clogin.com/annatadocs.onmicrosoft.com/B2C_1_signin/v2.0/.well-known/openid-configuration"
+                        }
+                    },
+                    "login": {
+                        "nameClaimType": "emails",
+                        "scopes": [
+                            "openid"
+                        ],
+                        "loginParameterNames": [
+                            "response_mode=form_post",
+                            "response_type=code+id_token",
+                            "redir=/.auth/complete"
+                        ]
+                    }
+                }
+            }
+        }
+    },
+    "globalHeaders": {
+        "Cache-Control": "no-cache"
+    }
+}
